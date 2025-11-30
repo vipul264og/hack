@@ -1,0 +1,980 @@
+/* 🌞 LIGHT MODE — bright and clean */
+:root[data-theme="light"] {
+  --bg: #f4faff;           /* bright soft white-blue */
+  --card: #ffffff;         /* full white card */
+  --text: #111;            /* deep black text */
+  --text-muted: #444;      /* darker grey for subtitle */
+  --primary: #0074ff;      /* vivid blue */
+  --border: #d5e7ff;       /* soft blue outline */
+}
+
+/* 🌙 DARK MODE — keep your current base theme */
+:root[data-theme="dark"] {
+  --bg: #0d1117;           /* GitHub style dark */
+  --card: #161b22;         /* deep dark navbar/cards */
+  --text: #e6edf3;         /* low glare text */
+  --text-muted: #9ba3af;
+  --primary: #3b82f6;      /* soft glowing blue */
+  --border: #2d333b;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background .3s ease, color .3s ease;
+}
+
+/* UI auto adjusts */
+.panel, .auth-card, .sidebar, .project-item,
+.project-list, .submission-display-box {
+  background: var(--card);
+  border-color: var(--border);
+  color: var(--text);
+}
+.muted { color: var(--text-muted); }
+.primary-btn { background: var(--primary) !important; color: #fff; }
+
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  color-scheme: dark;
+  --bg: #020617;
+  --bg-soft: rgba(15, 23, 42, 0.85);
+  --card: rgba(15, 23, 42, 0.95);
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.15);
+  --accent-strong: #0ea5e9;
+  --border-subtle: rgba(148, 163, 184, 0.2);
+  --text: #e5e7eb;
+  --text-muted: #9ca3af;
+  --danger: #f97373;
+  --warning: #facc15;
+  --success: #4ade80;
+  --radius-xl: 24px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #0f172a 0, #020617 60%);
+  color: var(--text);
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+/* AUTH */
+
+.auth-wrapper {
+  max-width: 420px;
+  margin: 3rem auto;
+  padding: 1rem;
+  width: 100%;
+}
+
+.auth-card {
+  background: linear-gradient(
+      to bottom right,
+      rgba(148, 163, 184, 0.04),
+      rgba(15, 23, 42, 0.95)
+    ),
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.2), transparent);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem 2rem 2rem;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 32px 100px rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(18px);
+}
+
+.auth-header h1 {
+  font-size: 1.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 0.25rem;
+}
+
+.auth-header p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.role-toggle {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 1.75rem 0 1.25rem;
+  padding: 0.3rem;
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.role-btn {
+  border-radius: 999px;
+  border: none;
+  padding: 0.65rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.18s ease-out;
+}
+
+.role-btn.active {
+  background: radial-gradient(circle at top left, var(--accent), #1d4ed8);
+  color: white;
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.7);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+}
+
+.field span {
+  color: var(--text-muted);
+}
+
+.field input,
+.field select,
+.field textarea {
+  border-radius: 0.9rem;
+  border: 1px solid var(--border-subtle);
+  background: rgba(15, 23, 42, 0.85);
+  padding: 0.7rem 0.85rem;
+  color: var(--text);
+  outline: none;
+  font: inherit;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.25);
+}
+
+.primary-btn {
+  border-radius: 999px;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(to right, var(--accent), var(--accent-strong));
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 18px 40px rgba(56, 189, 248, 0.28);
+  transition: transform 0.12s ease-out, box-shadow 0.15s ease-out,
+    filter 0.15s ease-out, opacity 0.15s;
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 20px 50px rgba(56, 189, 248, 0.4);
+}
+
+.primary-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.3);
+}
+
+.primary-btn.wide {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.primary-btn.small {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+}
+
+.ghost-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.8);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.15s ease-out, border-color 0.15s ease-out,
+    transform 0.1s ease-out;
+}
+
+.ghost-btn:hover {
+  background: rgba(30, 64, 175, 0.8);
+  border-color: rgba(129, 140, 248, 0.9);
+  transform: translateY(-1px);
+}
+
+.ghost-btn:active {
+  transform: translateY(0);
+}
+
+.error-chip {
+  margin-top: 0.3rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(248, 113, 113, 0.6);
+  background: rgba(127, 29, 29, 0.5);
+  color: #fecaca;
+  font-size: 0.78rem;
+}
+
+.auth-footnote {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* LAYOUT */
+
+.layout {
+  max-width: 1200px;
+  width: 100%;
+  margin: 1.5rem auto;
+  padding: 0 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  background: linear-gradient(
+      to right,
+      rgba(15, 23, 42, 0.95),
+      rgba(15, 23, 42, 0.9)
+    ),
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.3), transparent);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  backdrop-filter: blur(18px);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, #f97316, #0f172a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.app-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.app-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-chip {
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.user-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.user-role {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  background: var(--bg-soft);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem 1rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.7);
+}
+
+.sidebar h2 {
+  font-size: 1rem;
+  margin: 0 0 0.75rem;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.stat-card {
+  background: rgba(15, 23, 42, 0.85);
+  border-radius: 1rem;
+  padding: 0.7rem 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.stat-value {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.stat-hint {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+}
+
+.sidebar-section {
+  margin-top: 1rem;
+}
+
+.sidebar-section h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+}
+
+.pill-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pill {
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: rgba(15, 23, 42, 0.95);
+}
+
+.pill.slim {
+  padding: 0.18rem 0.55rem;
+  font-size: 0.7rem;
+}
+
+.pill.warning {
+  border-color: rgba(250, 204, 21, 0.9);
+  background: rgba(113, 63, 18, 0.85);
+}
+
+.pill.success {
+  border-color: rgba(74, 222, 128, 0.9);
+  background: rgba(20, 83, 45, 0.9);
+}
+
+.hint-list {
+  list-style: disc;
+  padding-left: 1.1rem;
+  margin: 0;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.hint-list li + li {
+  margin-top: 0.25rem;
+}
+
+/* CONTENT AREA */
+
+.content {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.content-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.muted {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.chip-outline {
+  font-size: 0.75rem;
+  border-radius: 999px;
+  border: 1px dashed rgba(148, 163, 184, 0.6);
+  padding: 0.25rem 0.6rem;
+  color: var(--text-muted);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+  gap: 0.75rem;
+}
+
+/* PANELS */
+
+.panel {
+  background: var(--card);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-subtle);
+  padding: 1rem;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.9);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.panel-header h3 {
+  margin: 0 0 0.1rem;
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  max-height: 430px;
+  overflow: auto;
+  padding-right: 0.2rem;
+}
+
+.project-item {
+  width: 100%;
+  text-align: left;
+  border-radius: 1rem;
+  padding: 0.65rem 0.7rem;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out,
+    border-color 0.1s ease-out, background 0.1s ease-out;
+}
+
+.project-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.8);
+  border-color: rgba(56, 189, 248, 0.8);
+}
+
+.project-item.active {
+  border-color: rgba(56, 189, 248, 0.95);
+  box-shadow: 0 18px 50px rgba(56, 189, 248, 0.35);
+  background: radial-gradient(
+      circle at top left,
+      rgba(56, 189, 248, 0.25),
+      transparent
+    ),
+    rgba(15, 23, 42, 0.98);
+}
+
+.project-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.project-item-top h4 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.project-item-mid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.7rem;
+}
+
+.deadline-text {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.85);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--accent), var(--accent-strong));
+}
+
+.tag {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.tag.success {
+  border-color: rgba(74, 222, 128, 0.9);
+  background: rgba(20, 83, 45, 0.9);
+  color: #bbf7d0;
+}
+
+.tag.warning {
+  border-color: rgba(250, 204, 21, 0.9);
+  background: rgba(113, 63, 18, 0.9);
+  color: #fef3c7;
+}
+
+/* NEW PROJECT */
+
+.new-project-form {
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* DETAIL */
+
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.detail-section {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 1.1rem;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  padding: 0.8rem;
+}
+
+.detail-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.detail-section-header h4 {
+  margin: 0 0 0.1rem;
+  font-size: 0.9rem;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 180px;
+  overflow: auto;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.3rem 0;
+  font-size: 0.8rem;
+  align-items: center;
+}
+
+.checkbox-row {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.checkbox-row input[type="checkbox"] {
+  accent-color: var(--accent);
+}
+
+.task-done {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.empty-row {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  padding: 0.3rem 0;
+}
+
+.inline-form {
+  margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto;
+  gap: 0.35rem;
+}
+
+.inline-form input {
+  border-radius: 0.8rem;
+  border: 1px solid var(--border-subtle);
+  background: rgba(15, 23, 42, 0.95);
+  padding: 0.5rem 0.65rem;
+  color: var(--text);
+  font: inherit;
+}
+
+.inline-form input:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+/* SUBMISSION */
+
+.submission-section {
+  margin-top: 0.8rem;
+}
+
+.submission-form {
+  margin-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.submission-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.progress-pill {
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.progress-pill strong {
+  color: var(--text);
+}
+
+/* UTIL */
+
+.empty-state {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 960px) {
+  .layout {
+    max-width: 100%;
+    margin: 0.75rem auto 1rem;
+  }
+
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .topbar-right {
+    align-self: stretch;
+    justify-content: space-between;
+  }
+
+  .inline-form {
+    grid-template-columns: 1fr;
+  }
+
+  .submission-actions {
+    align-items: flex-start;
+  }
+}
+/* ===========================================
+   🌞 FULL LIGHT MODE FIX (NO DARK REMOVAL)
+   Place at VERY bottom of file
+=========================================== */
+
+:root[data-theme="light"] {
+  --bg: #f5f7fa;
+  --bg-soft: #ffffff;
+  --card: #ffffff;
+  --accent: #007bff;
+  --accent-soft: rgba(0,123,255,0.15);
+  --accent-strong: #0063d6;
+  --border-subtle: #d0d7e2;
+  --text: #1a1a1a;
+  --text-muted: #555;
+  --danger: #d62828;
+  --warning: #ffb703;
+  --success: #4caf50;
+}
+
+/* Body + Layout readable in light theme */
+:root[data-theme="light"] body {
+  background: #eef3ff !important;
+  color: var(--text) !important;
+}
+
+/* Panels turn white instead of dark */
+:root[data-theme="light"] .panel,
+:root[data-theme="light"] .detail-section,
+:root[data-theme="light"] .new-project-form {
+  background: #ffffff !important;
+  border-color: var(--border-subtle) !important;
+  box-shadow: none;
+}
+
+/* Sidebar brightness restore */
+:root[data-theme="light"] .sidebar {
+  background: #ffffff !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 8px 30px rgba(90,120,160,0.15) !important;
+}
+
+/* Project list items no more dark blocks */
+:root[data-theme="light"] .project-item {
+  background: #ffffff !important;
+  border-color: #d7e1f2 !important;
+  color: #111 !important;
+}
+:root[data-theme="light"] .project-item.active {
+  background:#e2edff !important;
+  border-color:#007bff !important;
+}
+
+/* Tags + Pills look clean */
+:root[data-theme="light"] .tag,
+:root[data-theme="light"] .pill {
+  background:#eaf1ff !important;
+  border-color:#bcd2ff !important;
+  color:#004199 !important;
+}
+:root[data-theme="light"] .pill.success{
+  background:#d9ffe4 !important;
+  color:#0b5f26 !important;
+}
+:root[data-theme="light"] .pill.warning{
+  background:#fff3d4 !important;
+  color:#7a5200 !important;
+}
+
+/* Inputs become bright + visible */
+:root[data-theme="light"] .field input,
+:root[data-theme="light"] .field textarea,
+:root[data-theme="light"] .field select,
+:root[data-theme="light"] .inline-form input {
+  background:#ffffff !important;
+  border:1px solid #cbd5e1 !important;
+  color:#111 !important;
+}
+
+/* TOPBAR BRIGHT */
+:root[data-theme="light"] .topbar {
+  background:white !important;
+  border:1px solid #d9e6ff !important;
+  box-shadow:0 8px 30px rgba(120,150,200,0.15) !important;
+}
+
+/* AUTH SCREEN FIX */
+:root[data-theme="light"] .auth-card {
+  background:white !important;
+  border:1px solid #d1d9ec !important;
+  box-shadow:0 20px 50px rgba(150,160,200,0.25) !important;
+}
+:root[data-theme="light"] .role-toggle {
+  background:#eaf1ff !important;
+  border-color:#c5d7ff !important;
+}
+:root[data-theme="light"] .role-btn {
+  color:#333 !important;
+}
+:root[data-theme="light"] .role-btn.active {
+  background:#007bff !important;
+  color:white !important;
+}
+/* ===========================================
+   🌞 Light Mode Finishing Upgrade – Polish UI 
+=========================================== */
+
+:root[data-theme="light"] .stat-card,
+:root[data-theme="light"] .pill-list .pill,
+:root[data-theme="light"] .submission-display-box {
+  background:#ffffff !important;
+  color:#111 !important;
+  border:1px solid #d7e3f8 !important;
+  box-shadow:0 4px 14px rgba(0,0,0,.07) !important;
+}
+
+/* Sidebar quick filters fixed */
+:root[data-theme="light"] .pill.warning {
+  background:#fff4d6 !important;
+  color:#8a5b00 !important;
+}
+:root[data-theme="light"] .pill.success {
+  background:#dfffe8 !important;
+  color:#146a35 !important;
+}
+:root[data-theme="light"] .pill {
+  background:#eef5ff !important;
+  color:#003c80 !important;
+}
+
+/* Hint text readable */
+:root[data-theme="light"] .hint-list li {
+  color:#444 !important;
+}
+
+/* Tasks + Milestones container FULL WHITE */
+:root[data-theme="light"] .detail-section {
+  background:white !important;
+  border:1px solid #d6e0f5 !important;
+  box-shadow:0 6px 18px rgba(0,0,0,.05) !important;
+}
+
+/* Inputs more elegant + soft blur bottom shadow */
+:root[data-theme="light"] input,
+:root[data-theme="light"] textarea,
+:root[data-theme="light"] select {
+  background:#fff !important;
+  box-shadow:inset 0 2px 5px rgba(0,0,0,.06) !important;
+}
+
+/* Profile chip and topbar alignment fix */
+:root[data-theme="light"] .user-chip {
+  background:#ffffff !important;
+  border:1px solid #dce7ff !important;
+  color:#222 !important;
+}
+:root[data-theme="light"] .user-role {
+  color:#5b6d8a !important;
+}
+/* =======================
+   LIGHT MODE BUTTON FIX
+======================= */
+
+/* Ghost Buttons → Light Styled */
+:root[data-theme="light"] .ghost-btn {
+  background:#ffffff !important;
+  border:1px solid #d4def5 !important;
+  color:#1a1a1a !important;
+  box-shadow:0 3px 10px rgba(0,0,0,0.05);
+}
+
+:root[data-theme="light"] .ghost-btn:hover {
+  background:#e8f1ff !important;
+  border-color:#5b8dff !important;
+  color:#002b70 !important;
+  transform:translateY(-1px);
+}
+
+/* Small ghost variant (Add button) */
+:root[data-theme="light"] .ghost-btn.small,
+:root[data-theme="light"] .inline-form button,
+:root[data-theme="light"] .submission-form button.ghost-btn {
+  background:white !important;
+  border:1px solid #ccd9ff !important;
+  color:#222 !important;
+}
+
+:root[data-theme="light"] .inline-form button:hover {
+  background:#eaf1ff !important;
+  border-color:#4d7dff !important;
+}
+
